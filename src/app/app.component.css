@@ -1,0 +1,10 @@
+p {
+  font-family: Lato;
+}
+
+.warning {
+  margin: 1rem;
+  padding: .5rem;
+  border: 1px solid red;
+  background: yellow;
+}
