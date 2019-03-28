@@ -1,22 +1,47 @@
-<hello name="{{ name }}"></hello>
-<fieldset class="form-group"
-          [attr.aria-labelledby]="(!framework) ? optionDescription : null">
-  <legend>Select you prefered framework:</legend>
-  <ng-container *ngFor="let currentOption of options">
-    <input type="radio" required
-      id="opt_{{currentOption.value}}" 
-      name="framework" 
-      value="{{currentOption.value}}"
-      [(ngModel)]="framework"
-      class="form-control"/>
-    <label for="opt_{{currentOption.value}}">{{currentOption.name}}</label>
-  </ng-container>
-  <p *ngIf="framework ; else emptySelection">
-    You prefer: {{framework}}.
+<main>
+  <h1>Mandatory Radio Input</h1>
+
+  <p>
+    This implementation uses simple elements:
   </p>
-  <ng-template #emptySelection>
-    <div [id]="warningId" role="alert"
-        class="warning">You must select an option above.</div>
-  </ng-template>
-</fieldset>
-<button type=button (click)="reset()">Clear</button>
+
+  <ul>
+    <li>A fieldset to group inputs</li>
+    <li>a legend to provide a label to this fieldset</li>
+    <li>A list of label and radio input for each option</li>
+    <li>A div with alert role for the initial state (no option selected)</li>
+  </ul>
+
+  <p>
+    The alert is dismissed as soon as one option is selected.
+    In the final implementation is shall not be possible to show it again as
+    the no-selection (initial) state will never occur again.
+  </p>
+
+  <form>
+    <fieldset class="form-group"
+              [attr.aria-labelledby]="(!framework) ? optionDescription : null">
+      <legend>Select you prefered framework:</legend>
+      <ng-container *ngFor="let currentOption of options">
+        <input type="radio" required
+          id="opt_{{currentOption.value}}" 
+          name="framework" 
+          value="{{currentOption.value}}"
+          [(ngModel)]="framework"
+          class="form-control"/>
+        <label for="opt_{{currentOption.value}}">{{currentOption.name}}</label>
+      </ng-container>
+      <p *ngIf="framework ; else emptySelection">
+        You prefer: {{framework}}.
+      </p>
+      <ng-template #emptySelection>
+        <div [id]="warningId" role="alert"
+            class="warning">You must select one option from above.</div>
+      </ng-template>
+    </fieldset>
+  </form>
+</main>
+
+<nav class="action-bar" aria-label="Actions">
+  <button type=button (click)="reset()">Clear Selection</button>
+</nav>
