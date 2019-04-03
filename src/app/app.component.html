@@ -20,7 +20,7 @@
 
   <form>
     <fieldset class="form-group"
-              [attr.aria-labelledby]="(!framework) ? optionDescription : null">
+              [attr.aria-describedby]="(!framework) ? optionDescription : null">
       <legend>Select you prefered framework:</legend>
       <ng-container *ngFor="let currentOption of options">
         <input type="radio" required
